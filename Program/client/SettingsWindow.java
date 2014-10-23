@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import packets.ClientInformation;
+
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,8 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class SettingConstruct extends JFrame implements ActionListener {
+public class SettingsWindow extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JTextField ip_input;
 	private final JTextField username_input;
 	private final JTextField port_input;
@@ -26,7 +30,7 @@ public class SettingConstruct extends JFrame implements ActionListener {
 		return progressBar;
 	}
 
-	public SettingConstruct() {
+	public SettingsWindow() {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -90,12 +94,10 @@ public class SettingConstruct extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(Actions.CONNECT)) {
-			ClientInformation client = new ClientInformation(
-					username_input.getText(), ip_input.getText(),
-					port_input.getText());
+			@SuppressWarnings("unused")
+			ClientInformation client = new ClientInformation(username_input.getText(), ip_input.getText(),port_input.getText());
 			getBar().setValue(50);
-			KryoUtils ku = new KryoUtils(client);
-			if (ku.client.isConnected()) {
+			if (Network.client.isConnected()) {
 				Utils.writeWarning("Connected.");
 				getBar().setValue(100);
 			}

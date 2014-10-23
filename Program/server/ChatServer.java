@@ -8,16 +8,17 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
+
 import packets.Sendables.*;
 
-public class ServerStart extends Listener{
+public class ChatServer extends Listener{
 		private static final String host = "SERVER";
 		static HashMap<Integer, ClientData> list = new HashMap<Integer, ClientData>();
 	
 		static Kryo k;
 		static Server server;
 
-		public ServerStart(int port) {
+		public ChatServer(int port) {
 			Log.set(Log.LEVEL_NONE);
 			server = new Server();
 			try {
@@ -80,11 +81,12 @@ public class ServerStart extends Listener{
 		
 		
 		
-		ServerStart s;
+		@SuppressWarnings("unused")
+		ChatServer s;
 		if(args.length > 0) {
-			s = new ServerStart(Integer.parseInt(args[0]));
+			s = new ChatServer(Integer.parseInt(args[0]));
 		} else {
-			s = new ServerStart(5555);
+			s = new ChatServer(5555);
 		}
 	}
 }

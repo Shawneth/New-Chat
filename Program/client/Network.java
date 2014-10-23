@@ -3,20 +3,19 @@ package client;
 import java.io.IOException;
 
 import packets.Sendables.*;
-import packets.ClientInformation;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-public class KryoUtils extends Listener {
+public class Network extends Listener {
 	static Kryo k;
 	static Client client;
 	static ClientInformation info;
 
-	public KryoUtils(ClientInformation info) {
-		this.info = info;
+	public Network(ClientInformation info) {
+		Network.info = info;
 		client = new Client();
 		k = client.getKryo();
 		registerKryo();
@@ -48,7 +47,7 @@ public class KryoUtils extends Listener {
 		m.setMessage(message, info.username);
 		client.sendTCP(m);
 		Utils.writeMessage(info.username, message);
-		WindowConstruct.getField().setText("");
+		ClientChatWindow.getField().setText("");
 	}
 
 	private static void gotMessage(String user, String message) {

@@ -1,4 +1,4 @@
-package packets;
+package client;
 
 public class ClientInformation {
 	public final String username, ip, port;

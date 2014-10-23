@@ -13,7 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class WindowConstruct extends JFrame implements ActionListener, KeyListener{
+public class ClientChatWindow extends JFrame implements ActionListener, KeyListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static JTextField message_input;
 	private static JTextArea mainBoard;
 
@@ -25,9 +29,9 @@ public class WindowConstruct extends JFrame implements ActionListener, KeyListen
 	}
 
 	// Stuff to be added to another class afterwards
-	private final SettingConstruct sc = new SettingConstruct();
+	private final SettingsWindow sc = new SettingsWindow();
 
-	public WindowConstruct() {
+	public ClientChatWindow() {
 		this.setBounds(
 				Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
 				Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 200,
@@ -67,7 +71,7 @@ public class WindowConstruct extends JFrame implements ActionListener, KeyListen
 	}
 
 	public static void main(String args[]) {
-		new WindowConstruct();
+		new ClientChatWindow();
 	}
 
 	@Override
@@ -77,7 +81,7 @@ public class WindowConstruct extends JFrame implements ActionListener, KeyListen
 			sc.setVisible(true);
 			break;
 		case Actions.SEND_MESSAGE:
-			KryoUtils.sendMessage(message_input.getText());
+			Network.sendMessage(message_input.getText());
 		}
 	}
 
@@ -90,7 +94,7 @@ public class WindowConstruct extends JFrame implements ActionListener, KeyListen
 	public void keyPressed(KeyEvent e) {
 		
 		if(e.getKeyChar() == KeyEvent.VK_ENTER){
-			KryoUtils.sendMessage(message_input.getText());
+			Network.sendMessage(message_input.getText());
 		}
 		
 	}
