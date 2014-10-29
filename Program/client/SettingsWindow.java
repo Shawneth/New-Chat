@@ -96,6 +96,7 @@ public class SettingsWindow extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals(Actions.CONNECT)) {
 			@SuppressWarnings("unused")
 			ClientInformation client = new ClientInformation(username_input.getText(), ip_input.getText(),port_input.getText());
+			Network net = new Network(client);
 			getBar().setValue(50);
 			if (Network.client.isConnected()) {
 				Utils.writeWarning("Connected.");
