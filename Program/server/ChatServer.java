@@ -46,9 +46,10 @@ public class ChatServer extends Listener{
 		
 		@Override
 		public void received(Connection c, Object o) {
+			//43 is the total character count in variable, vs. the total 45 chars before requesting a newline.
 			if(o instanceof Message){
 				Message m = (Message) o;
-				System.out.println(m.username + ": " + m.message);
+				System.out.println(m.username + ": " + m.message +"\n--\nAmount of characters in message: " + m.message.length() + "\nAmount of characters in name: " + m.username.length() + "\n--");
 				server.sendToAllExceptTCP(c.getID(), m);
 			}
 		}
